@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SETEC 2025 - Semana de Tecnologia FATEC Sorocaba</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --purple-light: #C47CE6;
+            --purple-medium: #9E63F1;
+            --purple-dark: #612D90;
+            --purple-darker: #360070;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, var(--purple-darker) 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--purple-darker) 0%, var(--purple-dark) 100%);
+            padding: 3rem 0;
+            box-shadow: 0 4px 20px rgba(196, 124, 230, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: var(--purple-light);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--purple-light), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .header .subtitle {
+            color: var(--purple-light);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .event-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(196, 124, 230, 0.3);
+        }
+
+        .event-info i {
+            color: var(--purple-light);
+            margin-right: 0.5rem;
+        }
+        /* Logo */
+        .logo-img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        /* Centralizar dia da semana */
+        .day-header h2 {
+            text-align: center;
+        }
+
+        
+
+        .filter-section {
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--purple-medium);
+            color: white;
+            padding: 12px 30px;
+            margin: 0.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover {
+            background: var(--purple-medium);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(158, 99, 241, 0.4);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--purple-light), var(--purple-medium));
+            border-color: var(--purple-light);
+            box-shadow: 0 5px 20px rgba(196, 124, 230, 0.5);
+        }
+
+        .timeline-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .day-section {
+            margin-bottom: 3rem;
+            display: none;
+        }
+
+        .day-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .day-header {
+            background: linear-gradient(135deg, var(--purple-dark), var(--purple-medium));
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(158, 99, 241, 0.3);
+        }
+
+        .day-header h2 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .sessions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .session-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid rgba(196, 124, 230, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .session-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--purple-light), var(--purple-medium));
+        }
+
+        .session-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(196, 124, 230, 0.3);
+            border-color: var(--purple-light);
+        }
+
+        .session-time {
+            color: var(--purple-light);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .session-time i {
+            margin-right: 0.5rem;
+        }
+
+        .session-theme {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1rem 0;
+            color: white;
+        }
+
+        .speaker-info {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(196, 124, 230, 0.2);
+        }
+
+        .speaker-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple-medium), var(--purple-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            border: 2px solid var(--purple-light);
+            overflow: hidden;
+        }
+
+        .speaker-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+       
+
+        .speaker-name {
+            font-weight: 600;
+            color: var(--purple-light);
+        }
+
+        .speaker-type {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--purple-darker), #000000);
+            border: 2px solid var(--purple-medium);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 50px rgba(196, 124, 230, 0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple-medium), var(--purple-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-right: 1.5rem;
+            border: 3px solid var(--purple-light);
+            overflow: hidden;
+        }
+
+        .modal-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-title {
+            flex: 1;
+        }
+
+        .modal-title h3 {
+            margin: 0;
+            color: var(--purple-light);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: var(--purple-medium);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .modal-body h4 {
+            color: var(--purple-light);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 992px) {
+            .sessions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .header .subtitle {
+                font-size: 1rem;
+            }
+
+            .filter-btn {
+                padding: 8px 15px;
+                margin: 0.3rem;
+            }
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--purple-medium), var(--purple-light));
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(196, 124, 230, 0.5);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <!-- LOGO CENTRALIZADO -->
+    <div class="logo-container text-center my-4">
+        <img src="./FOTOS-PARTICIPANTES/logo.svg" alt="Logo SETEC" class="logo-img">
+    </div>
+
+    <div class="header">
+        <div class="container text-center">
+            <p class="subtitle">Semana de Tecnologia da FATEC Sorocaba</p>
+            <div class="event-info text-center">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 mb-2">
+                        <i class="far fa-calendar-alt"></i> <strong>06 a 10 de Outubro de 2025</strong>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <i class="far fa-map"></i> <strong>Av. Eng. Carlos Reinaldo Mendes, 2015 - Sorocaba</strong>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <i class="far fa-clock"></i> <strong>13:00 às 18:15</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-section">
+        <button class="filter-btn active" onclick="filterDay('todos')">
+            <i class="fas fa-calendar-week"></i> Todos os Dias
+        </button>
+        <button class="filter-btn" onclick="filterDay('segunda')">
+            <i class="fas fa-calendar-day"></i> Segunda (06/10)
+        </button>
+        <button class="filter-btn" onclick="filterDay('terca')">
+            <i class="fas fa-calendar-day"></i> Terça (07/10)
+        </button>
+        <button class="filter-btn" onclick="filterDay('quarta')">
+            <i class="fas fa-calendar-day"></i> Quarta (08/10)
+        </button>
+        <button class="filter-btn" onclick="filterDay('quinta')">
+            <i class="fas fa-calendar-day"></i> Quinta (09/10)
+        </button>
+        <button class="filter-btn" onclick="filterDay('sexta')">
+            <i class="fas fa-calendar-day"></i> Sexta (10/10)
+        </button>
+    </div>
+
+    <div class="timeline-container">
+        <!-- SEGUNDA-FEIRA -->
+        <div class="day-section active" data-day="segunda">
+            <div class="day-header">
+                <h2><i class="fas fa-calendar-alt"></i> Segunda-feira - 06/10</h2>
+            </div>
+            <div class="sessions-grid">
+                <div class="session-card" onclick="showSpeaker('thomas')">
+                    <div class="session-time"><i class="far fa-clock"></i> 13:15 - 13:30</div>
+                    <div class="session-theme">Apresentação Musical</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Thomas Castro.jpg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Thomas Castro</div>
+                            <div class="speaker-type">Aluno</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('isabella')">
+                    <div class="session-time"><i class="far fa-clock"></i> 13:30 - 13:45</div>
+                    <div class="session-theme">Apresentação Musical</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Isabella Silva.jpeg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Isabella Silva</div>
+                            <div class="speaker-type">Aluna</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('rafaela')">
+                    <div class="session-time"><i class="far fa-clock"></i> 13:45 - 14:00</div>
+                    <div class="session-theme">Apresentação Musical</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Rafaela.png" ></i></div>
+                        <div>
+                            <div class="speaker-name">Rafaela Mansano</div>
+                            <div class="speaker-type">Aluna</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('victor')">
+                    <div class="session-time"><i class="far fa-clock"></i> 14:00 - 14:30</div>
+                    <div class="session-theme">A importância do CX na carreira de tecnologia - Entendendo Além dos Códigos</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Victor Oliveira.jpeg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Victor Oliveira</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('guilherme')">
+                    <div class="session-time"><i class="far fa-clock"></i> 14:30 - 15:30</div>
+                    <div class="session-theme">Da Bagunça à Elegância: A Jornada do Clean Code, o Código Limpo</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Guilherme Sanches.jpeg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Guilherme Sanches</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('roberta')">
+                    <div class="session-time"><i class="far fa-clock"></i> 15:45 - 16:45</div>
+                    <div class="session-theme">Avanços Tecnológicos dentro da Psicologia</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Roberta Gabriotti.jpeg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Roberta Gabriotti</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('italo')">
+                    <div class="session-time"><i class="far fa-clock"></i> 16:45 - 17:45</div>
+                    <div class="session-theme">Desenvolvimento de Games - Do Game Design à Programação</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Italo Pereira.png" ></i></div>
+                        <div>
+                            <div class="speaker-name">Ítalo Pereira</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TERÇA-FEIRA -->
+        <div class="day-section" data-day="terca">
+            <div class="day-header">
+                <h2><i class="fas fa-calendar-alt"></i> Terça-feira - 07/10</h2>
+            </div>
+            <div class="sessions-grid">
+                <div class="session-card" onclick="showSpeaker('juliana')">
+                    <div class="session-time"><i class="far fa-clock"></i> 13:30 - 14:30</div>
+                    <div class="session-theme">Carreira em Tecnologia: Como se preparar e se destacar no mercado</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Juliana Domingues.png" ></i></div>
+                        <div>
+                            <div class="speaker-name">Juliana Domingues</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('luciana')">
+                    <div class="session-time"><i class="far fa-clock"></i> 14:30 - 15:30</div>
+                    <div class="session-theme">UX Design na Indústria: Mais que Telas, Experiências</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Luciana Zaina.jpeg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Luciana Zaina</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('lizandra')">
+                    <div class="session-time"><i class="far fa-clock"></i> 15:45 - 16:45</div>
+                    <div class="session-theme">Posicionamento profissional: como se destacar no mercado de trabalho</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Lizandra Santos.jpg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Lizandra Santos</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('felipe')">
+                    <div class="session-time"><i class="far fa-clock"></i> 16:15 - 17:15</div>
+                    <div class="session-theme">Princípios do Web Design para E-commerces e Landing Pages</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Felipe Parra.jpeg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Felipe Parra</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUARTA-FEIRA -->
+        <div class="day-section" data-day="quarta">
+            <div class="day-header">
+                <h2><i class="fas fa-calendar-alt"></i> Quarta-feira - 08/10</h2>
+            </div>
+            <div class="sessions-grid">
+                <div class="session-card" onclick="showSpeaker('raissa')">
+                    <div class="session-time"><i class="far fa-clock"></i> 13:30 - 14:30</div>
+                    <div class="session-theme">Gestão de suporte e ITIL</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Raissa Miranda.jpg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Raissa Miranda</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('mariajose')">
+                    <div class="session-time"><i class="far fa-clock"></i> 14:30 - 14:45</div>
+                    <div class="session-theme">Projeto SER CPS</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div>
+                            <div class="speaker-name">Maria José Cardozo</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('robocode')">
+                    <div class="session-time"><i class="far fa-clock"></i> 14:45 - 15:30</div>
+                    <div class="session-theme">Robocode: Programação Avançada e Competitiva com Estratégia e Inovação</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/José.jpg" ></i></div>
+                        <div>
+                            <div class="speaker-name">José Silva, Luiz Frei e João Souza</div>
+                            <div class="speaker-type">Alunos</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('igor')">
+                    <div class="session-time"><i class="far fa-clock"></i> 15:45 - 16:45</div>
+                    <div class="session-theme">Dá Etec à Carreira Internacional</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Igor Occon.jpg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Igor Occon</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('merivaldo')">
+                    <div class="session-time"><i class="far fa-clock"></i> 16:45 - 17:45</div>
+                    <div class="session-theme">Humanização no atendimento em Tempos de IA</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Merivaldo Silva.jpg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Merivaldo Silva</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUINTA-FEIRA -->
+        <div class="day-section" data-day="quinta">
+            <div class="day-header">
+                <h2><i class="fas fa-calendar-alt"></i> Quinta-feira - 09/10</h2>
+            </div>
+            <div class="sessions-grid">
+                <div class="session-card" onclick="showSpeaker('rafael')">
+                    <div class="session-time"><i class="far fa-clock"></i> 13:30 - 14:10</div>
+                    <div class="session-theme">Mundo em Mudança: Impacto da Blockchain na Economia Global</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Rafael Castaneda.jpg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Rafael Castaneda</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('helio')">
+                    <div class="session-time"><i class="far fa-clock"></i> 14:10 - 15:00</div>
+                    <div class="session-theme">O poder da tecnologia Blockchain e I.A</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Helio Silva.jpg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Helio Silva</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('bruno')">
+                    <div class="session-time"><i class="far fa-clock"></i> 15:00 - 15:30</div>
+                    <div class="session-theme">Cybersecurity na Blockchain</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Bruno Frota.png" ></i></div>
+                        <div>
+                            <div class="speaker-name">Bruno Frota</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('meucliente')">
+                    <div class="session-time"><i class="far fa-clock"></i> 15:30 - 16:00</div>
+                    <div class="session-theme">Apresentação institucional Meu Cliente</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><i class="fas fa-users"></i></div>
+                        <div>
+                            <div class="speaker-name">Brenda Furutani e Gabriel Andrade</div>
+                            <div class="speaker-type">Palestrantes</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('mulheres1')">
+                    <div class="session-time"><i class="far fa-clock"></i> 16:00 - 17:30</div>
+                    <div class="session-theme">Roda de Conversa: Mulheres na Tecnologia</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><i class="fas fa-users"></i></div>
+                        <div>
+                            <div class="speaker-name">Várias Palestrantes</div>
+                            <div class="speaker-type">Roda de Conversa</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEXTA-FEIRA -->
+        <div class="day-section" data-day="sexta">
+            <div class="day-header">
+                <h2><i class="fas fa-calendar-alt"></i> Sexta-feira - 10/10</h2>
+            </div>
+            <div class="sessions-grid">
+                <div class="session-card" onclick="showSpeaker('mulheres2')">
+                    <div class="session-time"><i class="far fa-clock"></i> 13:30 - 15:00</div>
+                    <div class="session-theme">Tecnologia com propósito: como mulheres estão construindo futuro, redes e oportunidades</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><i class="fas fa-users"></i></div>
+                        <div>
+                            <div class="speaker-name">Várias Palestrantes</div>
+                            <div class="speaker-type">Mesa Redonda</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('francine')">
+                    <div class="session-time"><i class="far fa-clock"></i> 15:15 - 16:15</div>
+                    <div class="session-theme">Trend Marketing Inteligente: Como o uso da tecnologia pode apoiar novas ativações no varejo</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Francine Cação.png" ></i></div>
+                        <div>
+                            <div class="speaker-name">Francine Cação</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="showSpeaker('luciano')">
+                    <div class="session-time"><i class="far fa-clock"></i> 16:15 - 17:15</div>
+                    <div class="session-theme">Como a IA + conectividade estão transformando o produto e o CX na Ford</div>
+                    <div class="speaker-info">
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Luciano Driemeier.jpeg" ></i></div>
+                        <div>
+                            <div class="speaker-name">Luciano Driemeier</div>
+                            <div class="speaker-type">Palestrante</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="speakerModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <div class="modal-avatar" id="modalAvatar"></div>
+                <div class="modal-title">
+                    <h3 id="modalName"></h3>
+                    <p id="modalRole"></p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h4><i class="fas fa-bullhorn"></i> Tema</h4>
+                <p id="modalTheme"></p>
+                <h4><i class="fas fa-user-circle"></i> Sobre</h4>
+                <p id="modalAbout"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const speakers = {
+            thomas: {
+                name: "Thomas Castro",
+                role: "Aluno",
+                theme: "Apresentação Musical",
+                about: "Formação em Desenvolvimento de Sistemas.",
+                icon: "fa-user",
+                image: "./FOTOS-PARTICIPANTES/Thomas Castro.jpg" // Adicione a URL da imagem aqui
+            },
+            isabella: {
+                name: "Isabella Silva",
+                role: "Aluna",
+                theme: "Apresentação Musical",
+                about: "Atualmente estou cursando meu 4º de ADS na Fatec Sorocaba, com experiência em desenvolvimento de softwares e gestão de projetos. Para o evento da SETEC, irei participar do grupo de organização musical no período vespertino, tocando bateria.",
+                icon: "fa-user",
+                image: "./FOTOS-PARTICIPANTES/Isabella Silva.jpeg" // Adicione a URL da imagem aqui
+            },
+            rafaela: {
+                name: "Rafaela Mansano",
+                role: "Aluna",
+                theme: "Apresentação Musical",
+                about: "Formação em desenvolvimento de sistemas, atualmente trabalhando como docente em piano clássico em escola de música na cidade de Sorocaba.",
+                icon: "fa-user",
+                image: "./FOTOS-PARTICIPANTES/Rafaela.png" // Adicione a URL da imagem aqui
+            },
+            victor: {
+                name: "Victor Oliveira",
+                role: "Director of Services - CX (Head of Services)",
+                theme: "A importância do CX na carreira de tecnologia - Entendendo Além dos Códigos",
+                about: "Director of Services - CX (Head of Services), especialista em experiência do cliente e sua importância no desenvolvimento de tecnologia.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Victor Oliveira.jpeg" // Adicione a URL da imagem aqui
+            },
+            guilherme: {
+                name: "Guilherme Sanches",
+                role: "Desenvolvedor de Software",
+                theme: "Da Bagunça à Elegância: A Jornada do Clean Code, o Código Limpo",
+                about: "10 anos de experiência como desenvolvedor de Software. Formado na FATEC Sorocaba em 2015, com especialização em Engenharia de Software pela Unicamp e especialização em Inteligência Artificial pela FACENS.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Guilherme Sanches.jpeg" // Adicione a URL da imagem aqui
+            },
+            roberta: {
+                name: "Roberta Gabriotti",
+                role: "Psicóloga Clínica e Social",
+                theme: "Avanços Tecnológicos dentro da Psicologia",
+                about: "Psicóloga Clínica e Social formada há 23 anos com bastante experiência em Saúde Mental. Coordenadora de CAPS infanto-juvenil de Sorocaba durante 16 anos. Especialista em Psicopatologia pela PUC-SP e Violência Doméstica pela USP.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Roberta Gabriotti.jpeg" // Adicione a URL da imagem aqui
+            },
+            italo: {
+                name: "Ítalo Pereira",
+                role: "Coordenador Técnico-Pedagógico",
+                theme: "Desenvolvimento de Games - Do Game Design à Programação",
+                about: "Coordenador Técnico-Pedagógico da Franqueadora, formado em Análise e Desenvolvimento de Sistemas e cursando Pós-Graduação em Neurociência e Aprendizagem na Educação. Essa é a sua segunda participação na Semana da Tecnologia da Fatec.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Italo Pereira.png" // Adicione a URL da imagem aqui
+            },
+            juliana: {
+                name: "Juliana Domingues",
+                role: "Profissional de Recursos Humanos",
+                theme: "Carreira em Tecnologia: Como se preparar e se destacar no mercado",
+                about: "Profissional de Recursos Humanos com mais de 5 anos de experiência em empresas de tecnologia. Atua como Business Partner estratégica, com foco em recrutamento e seleção, desenvolvimento de talentos e cultura organizacional. Pós-graduanda em Desenvolvimento de Pessoas.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Juliana Domingues.png" // Adicione a URL da imagem aqui
+            },
+            luciana: {
+                name: "Luciana Zaina",
+                role: "Professora Titular da UFSCar",
+                theme: "UX Design na Indústria: Mais que Telas, Experiências",
+                about: "Professora Titular da UFSCar - campus Sorocaba. Seus interesses de pesquisa são Experiência do Usuário (UX), Engenharia de Software e Startups e UX.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Luciana Zaina.jpeg" // Adicione a URL da imagem aqui
+            },
+            lizandra: {
+                name: "Lizandra Santos",
+                role: "Headhunter e Assessora de Carreira",
+                theme: "Posicionamento profissional: como se destacar no mercado de trabalho",
+                about: "Formada e pós-graduada em RH. Headhunter e há mais de 4 anos ajuda profissionais a se recolocarem ou trocarem de emprego por meio da Assessoria de Carreira.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Lizandra Santos.jpg" // Adicione a URL da imagem aqui
+            },
+            felipe: {
+                name: "Felipe Parra",
+                role: "Especialista em E-commerce",
+                theme: "Princípios do Web Design para E-commerces e Landing Pages",
+                about: "Especialista em E-commerce, landing pages e ferramentas de Web Design, com 5 anos de experiência. Focado em otimizar conversão e experiência do usuário em páginas digitais.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Felipe Parra.jpeg" // Adicione a URL da imagem aqui
+            },
+            raissa: {
+                name: "Raissa Miranda",
+                role: "Especialista em Suporte ao Cliente",
+                theme: "Gestão de suporte e ITIL",
+                about: "Atua na área de suporte ao cliente há 18 anos. Formada em Sistemas de Informação e pós-graduada em Gestão e Governança de TI pelo SENAC Sorocaba. Possui certificação ITIL V3 e está estudando para ITIL 4.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Raissa Miranda.jpg" // Adicione a URL da imagem aqui
+            },
+            mariajose: {
+                name: "Maria José Cardozo",
+                role: "Professora Universitária",
+                theme: "Projeto SER CPS",
+                about: "Professora universitária integrante do Projeto SER CPS na Fatec Sorocaba.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/" // Adicione a URL da imagem aqui
+            },
+            robocode: {
+                name: "José Silva, Luiz Frei e João Souza",
+                role: "Alunos da Fatec",
+                theme: "Robocode: Programação Avançada e Competitiva com Estratégia e Inovação",
+                about: "Alunos da Fatec Sorocaba apresentando sobre programação competitiva com Robocode.",
+                icon: "fa-users",
+                images: [
+                    "./FOTOS-PARTICIPANTES/Jose.jpg",
+                    "./FOTOS-PARTICIPANTES/Luiz.jpg",
+                    "./FOTOS-PARTICIPANTES/Joao.jpg"
+                ]
+            },
+            igor: {
+                name: "Igor Occon",
+                role: "Desenvolvedor de Software",
+                theme: "Dá Etec à Carreira Internacional",
+                about: "Desenvolvedor de Software com 1 ano e meio de experiência. Técnico em Análise e Desenvolvimento de Sistemas pela ETEC Fernando Prestes. Experiência internacional em trabalho remoto para empresa estrangeira.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Igor Occon.jpg" // Adicione a URL da imagem aqui
+            },
+            merivaldo: {
+                name: "Merivaldo Silva",
+                role: "Account Manager",
+                theme: "Humanização no atendimento em Tempos de IA",
+                about: "Account Manager especializado em humanização no atendimento e experiência do cliente.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Merivaldo Silva.jpg" // Adicione a URL da imagem aqui
+            },
+            rafael: {
+                name: "Rafael Castaneda",
+                role: "CEO da Weever",
+                theme: "Mundo em Mudança: Impacto da Blockchain na Economia Global",
+                about: "CEO da Weever; Mestre em Sistemas pelo IME-RJ com mais de 20 anos como engenheiro de software e professor/pesquisador. Hoje atua como empreendedor em web3 e educador com o seu canal 'Casta Crypto', onde cultiva um olhar filosófico, sociológico e econômico sobre o mundo cripto.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Rafael Castaneda.jpg" // Adicione a URL da imagem aqui
+            },
+            helio: {
+                name: "Helio Silva",
+                role: "Bitcoin Maximalist",
+                theme: "O poder da tecnologia Blockchain e I.A",
+                about: "Bitcoin Maximalist e empreendedor na Pointbreak Analytics. Criador do projeto educacional Bitcoin Kids (2014). Um dos pioneiros em Blockchain no Brasil, atua como educador e palestrante em diversas instituições.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Helio Silva.jpg" // Adicione a URL da imagem aqui
+            },
+            bruno: {
+                name: "Bruno Frota",
+                role: "Analista de Sistemas",
+                theme: "Cybersecurity na Blockchain",
+                about: "Analista de Sistemas e Web3 Community Manager, atuando em educação, mentoria, moderação e prevenção de fraudes no universo cripto.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Bruno Frota.png" // Adicione a URL da imagem aqui
+            },
+            meucliente: {
+                name: "Brenda Furutani e Gabriel Andrade",
+                role: "Líder de setor e CTO",
+                theme: "Apresentação institucional Meu Cliente",
+                about: "Brenda Furutani (Líder de setor) e Gabriel Andrade (CTO) apresentam a empresa Meu Cliente.",
+                icon: "fa-users",
+                image: "./FOTOS-PARTICIPANTES/" // Adicione a URL da imagem aqui
+            },
+            mulheres1: {
+                name: "Roda de Conversa: Mulheres na Tecnologia",
+                role: "Palestrantes",
+                theme: "Roda de Conversa: Mulheres na Tecnologia",
+                about: "Participantes: Cristiana Visentin (Fundadora da WinSales), Cristiane Mercado (Professora UFSCar), Fernanda Castro (Co-fundadora da New Rizon), Michele Oliveira (Diretora Applix Sistemas) e Brenda Furutani (Psicóloga e Key Account).",
+                icon: "fa-users",
+                image: "./FOTOS-PARTICIPANTES/" // Adicione a URL da imagem aqui
+            },
+            mulheres2: {
+                name: "Tecnologia com propósito",
+                role: "Palestrantes",
+                theme: "Tecnologia com propósito: como mulheres estão construindo futuro, redes e oportunidades",
+                about: "Participantes: Audrei Moron (VP de Tecnologia Ogilvy), Camila Mattos (Tech Lead), Cristiane Mercado (Professora UFSCar) e Mariana Domitila (CEO Grupo Elo).",
+                icon: "fa-users",
+                image: "./FOTOS-PARTICIPANTES/" // Adicione a URL da imagem aqui
+            },
+            francine: {
+                name: "Francine Cação",
+                role: "COO e cofundadora da MC Ads",
+                theme: "Trend Marketing Inteligente: Como o uso da tecnologia pode apoiar novas ativações no varejo",
+                about: "COO e cofundadora da MC Ads, plataforma de retail media. Mais de 20 anos de experiência no varejo, com atuação em projetos no Grupo Carrefour, OXXO e Savegnago.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Francine Cação.png" // Adicione a URL da imagem aqui
+            },
+            luciano: {
+                name: "Luciano Driemeier",
+                role: "Connectivity BizOps South America - Ford",
+                theme: "Como a IA + conectividade estão transformando o produto e o CX na Ford",
+                about: "Profissional com quase 10 anos de experiência na Ford Motor Company, atuando em conectividade, estratégia de produto e lançamentos na América do Sul. Atualmente em Connectivity BizOps South America, já foi Product Strategy Manager e Launch Manager.",
+                icon: "fa-chalkboard-teacher",
+                image: "./FOTOS-PARTICIPANTES/Luciano Driemeier.jpeg" // Adicione a URL da imagem aqui
+            }
+        };
+
+        function filterDay(day) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.filter-btn').classList.add('active');
+
+            const sections = document.querySelectorAll('.day-section');
+            
+            if (day === 'todos') {
+                sections.forEach(section => section.classList.add('active'));
+            } else {
+                sections.forEach(section => {
+                    if (section.dataset.day === day) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        function showSpeaker(speakerId) {
+            const speaker = speakers[speakerId];
+            if (!speaker) return;
+
+            document.getElementById('modalName').textContent = speaker.name;
+            document.getElementById('modalRole').textContent = speaker.role;
+            document.getElementById('modalTheme').textContent = speaker.theme;
+            document.getElementById('modalAbout').textContent = speaker.about;
+            
+            // Verifica se há imagem, se não, usa ícone
+            if (speaker.image) {
+                document.getElementById('modalAvatar').innerHTML = `<img src="${speaker.image}" alt="${speaker.name}">`;
+            } else {
+                document.getElementById('modalAvatar').innerHTML = `<i class="fas ${speaker.icon}"></i>`;
+            }
+
+            document.getElementById('speakerModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('speakerModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('speakerModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Scroll to top functionality
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        if (speaker.images && speaker.images.length > 0) {
+            document.getElementById('modalAvatar').innerHTML = speaker.images
+                .map(img => `<img src="${img}" alt="${speaker.name}" style="width:60px; height:60px; border-radius:50%; margin-right:5px;">`)
+                .join('');
+        } else if (speaker.image) {
+            document.getElementById('modalAvatar').innerHTML = `<img src="${speaker.image}" alt="${speaker.name}">`;
+        } else {
+            document.getElementById('modalAvatar').innerHTML = `<i class="fas ${speaker.icon}"></i>`;
+        }
+
+    </script>
+</body>
+</html>
