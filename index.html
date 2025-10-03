@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SETEC 2025 - Semana de Tecnologia FATEC Sorocaba</title>
+    <title>SETEC</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -404,6 +404,20 @@
         .scroll-top.show {
             display: flex;
         }
+        .speaker-info {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(196, 124, 230, 0.2);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .speaker-info > div:not(.speaker-avatar) {
+            flex: 1;
+            min-width: 150px;
+        }
     </style>
 </head>
 <body>
@@ -414,19 +428,27 @@
 
     <div class="header">
         <div class="container text-center">
-            <p class="subtitle">Semana de Tecnologia da FATEC Sorocaba</p>
-            <div class="event-info text-center">
-                <div class="row justify-content-center">
-                    <div class="col-md-6 mb-2">
-                        <i class="far fa-calendar-alt"></i> <strong>06 a 10 de Outubro de 2025</strong>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <i class="far fa-map"></i> <strong>Av. Eng. Carlos Reinaldo Mendes, 2015 - Sorocaba</strong>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <i class="far fa-clock"></i> <strong>13:00 às 18:15</strong>
+            <p class="subtitle">Programação da Semana de Tecnologia do Curso Análise e Desenvolvimento de Sistemas - AMS</p>
+            <p class="subtitle">Fatec Sorocaba – José Crespo Gonzales</p>
+            <div class="d-flex justify-content-center flex-wrap gap-3">
+                <div class="event-info">
+                    <div class="text-center">
+                    <i class="far fa-calendar-alt"></i>
+                    <div><strong>06 a 10 de Outubro de 2025</strong></div>
+                </div>
+            </div>
+                <div class="event-info">
+                    <div class="text-center">
+                        <i class="far fa-map"></i>
+                        <div><strong>Av. Eng. Carlos Reinaldo Mendes, 2015 - Sorocaba</strong></div>
                     </div>
                 </div>
+                <div class="event-info">
+                    <div class="text-center">
+                        <i class="far fa-clock"></i>
+                        <div><strong>13:00 às 18:15</strong></div>
+                </div>
+            </div>
             </div>
         </div>
     </div>
@@ -623,7 +645,7 @@
                     <div class="session-time"><i class="far fa-clock"></i> 14:30 - 14:45</div>
                     <div class="session-theme">Projeto SER CPS</div>
                     <div class="speaker-info">
-                        <div class="speaker-avatar"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Maria Jose.jpg"></div>
                         <div>
                             <div class="speaker-name">Maria José Cardozo</div>
                             <div class="speaker-type">Palestrante</div>
@@ -635,7 +657,9 @@
                     <div class="session-time"><i class="far fa-clock"></i> 14:45 - 15:30</div>
                     <div class="session-theme">Robocode: Programação Avançada e Competitiva com Estratégia e Inovação</div>
                     <div class="speaker-info">
-                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/José.jpg" ></i></div>
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/José.jpg"></div>
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Luiz Frei.jpeg"></div>
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/João.jpg"></div>
                         <div>
                             <div class="speaker-name">José Silva, Luiz Frei e João Souza</div>
                             <div class="speaker-type">Alunos</div>
@@ -715,7 +739,8 @@
                     <div class="session-time"><i class="far fa-clock"></i> 15:30 - 16:00</div>
                     <div class="session-theme">Apresentação institucional Meu Cliente</div>
                     <div class="speaker-info">
-                        <div class="speaker-avatar"><i class="fas fa-users"></i></div>
+                       <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Brenda Furutani.jpeg"></div>
+                       <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Gabriel Andrade.jpeg"></div>
                         <div>
                             <div class="speaker-name">Brenda Furutani e Gabriel Andrade</div>
                             <div class="speaker-type">Palestrantes</div>
@@ -727,7 +752,11 @@
                     <div class="session-time"><i class="far fa-clock"></i> 16:00 - 17:30</div>
                     <div class="session-theme">Roda de Conversa: Mulheres na Tecnologia</div>
                     <div class="speaker-info">
-                        <div class="speaker-avatar"><i class="fas fa-users"></i></div>
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Cristiane Visentin.jpg"></div>
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Cristiane Palomar.jpg"></div>
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Fernanda Castro.jpeg"></div>
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Michele Oliveira.jpg"></div>
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Brenda Furutani.jpeg"></div>
                         <div>
                             <div class="speaker-name">Várias Palestrantes</div>
                             <div class="speaker-type">Roda de Conversa</div>
@@ -747,10 +776,13 @@
                     <div class="session-time"><i class="far fa-clock"></i> 13:30 - 15:00</div>
                     <div class="session-theme">Tecnologia com propósito: como mulheres estão construindo futuro, redes e oportunidades</div>
                     <div class="speaker-info">
-                        <div class="speaker-avatar"><i class="fas fa-users"></i></div>
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Audrei Moron.png"></div>
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Camila Mattos.jfif"></div>
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Cristiane Palomar.jpg"></div>
+                        <div class="speaker-avatar"><img src="./FOTOS-PARTICIPANTES/Mariana Domitila.jpeg"></div>
                         <div>
                             <div class="speaker-name">Várias Palestrantes</div>
-                            <div class="speaker-type">Mesa Redonda</div>
+                            <div class="speaker-type">Painel</div>
                         </div>
                     </div>
                 </div>
@@ -822,7 +854,7 @@
                 name: "Isabella Silva",
                 role: "Aluna",
                 theme: "Apresentação Musical",
-                about: "Atualmente estou cursando meu 4º de ADS na Fatec Sorocaba, com experiência em desenvolvimento de softwares e gestão de projetos. Para o evento da SETEC, irei participar do grupo de organização musical no período vespertino, tocando bateria.",
+                about: "Está no 4º semestre de ADS na Fatec Sorocaba, com experiência em desenvolvimento de softwares e gestão de projetos. Na SETEC, participará do grupo de organização musical no período vespertino, atuando como baterista e tocando violão.",
                 icon: "fa-user",
                 image: "./FOTOS-PARTICIPANTES/Isabella Silva.jpeg" // Adicione a URL da imagem aqui
             },
@@ -878,9 +910,9 @@
                 name: "Luciana Zaina",
                 role: "Professora Titular da UFSCar",
                 theme: "UX Design na Indústria: Mais que Telas, Experiências",
-                about: "Professora Titular da UFSCar - campus Sorocaba. Seus interesses de pesquisa são Experiência do Usuário (UX), Engenharia de Software e Startups e UX.",
+                about: "É formada em Ciência da Computação pela UNESP e Mestre e Doutora em Engenharia da Computação pela POLI-USP. Foi pesquisadora visitante (pós-doutorado) na The Open University, Inglaterra, supervisionada pela Professor Helen Sharp, conduzindo investigações na indústria sob o tema comunicação sobre UX (User eXperience) em equipes ágeis de software.",
                 icon: "fa-chalkboard-teacher",
-                image: "./FOTOS-PARTICIPANTES/Luciana Zaina.jpeg" // Adicione a URL da imagem aqui
+                image: "./FOTOS-PARTICIPANTES/Luciana Zaina.jpeg" 
             },
             lizandra: {
                 name: "Lizandra Santos",
@@ -888,7 +920,7 @@
                 theme: "Posicionamento profissional: como se destacar no mercado de trabalho",
                 about: "Formada e pós-graduada em RH. Headhunter e há mais de 4 anos ajuda profissionais a se recolocarem ou trocarem de emprego por meio da Assessoria de Carreira.",
                 icon: "fa-chalkboard-teacher",
-                image: "./FOTOS-PARTICIPANTES/Lizandra Santos.jpg" // Adicione a URL da imagem aqui
+                image: "./FOTOS-PARTICIPANTES/Lizandra Santos.jpg" 
             },
             felipe: {
                 name: "Felipe Parra",
@@ -896,7 +928,7 @@
                 theme: "Princípios do Web Design para E-commerces e Landing Pages",
                 about: "Especialista em E-commerce, landing pages e ferramentas de Web Design, com 5 anos de experiência. Focado em otimizar conversão e experiência do usuário em páginas digitais.",
                 icon: "fa-chalkboard-teacher",
-                image: "./FOTOS-PARTICIPANTES/Felipe Parra.jpeg" // Adicione a URL da imagem aqui
+                image: "./FOTOS-PARTICIPANTES/Felipe Parra.jpeg" 
             },
             raissa: {
                 name: "Raissa Miranda",
@@ -904,7 +936,7 @@
                 theme: "Gestão de suporte e ITIL",
                 about: "Atua na área de suporte ao cliente há 18 anos. Formada em Sistemas de Informação e pós-graduada em Gestão e Governança de TI pelo SENAC Sorocaba. Possui certificação ITIL V3 e está estudando para ITIL 4.",
                 icon: "fa-chalkboard-teacher",
-                image: "./FOTOS-PARTICIPANTES/Raissa Miranda.jpg" // Adicione a URL da imagem aqui
+                image: "./FOTOS-PARTICIPANTES/Raissa Miranda.jpg" 
             },
             mariajose: {
                 name: "Maria José Cardozo",
@@ -912,7 +944,7 @@
                 theme: "Projeto SER CPS",
                 about: "Professora universitária integrante do Projeto SER CPS na Fatec Sorocaba.",
                 icon: "fa-chalkboard-teacher",
-                image: "./FOTOS-PARTICIPANTES/" // Adicione a URL da imagem aqui
+                image: "./FOTOS-PARTICIPANTES/Maria Jose.jpg" 
             },
             robocode: {
                 name: "José Silva, Luiz Frei e João Souza",
@@ -929,7 +961,7 @@
             igor: {
                 name: "Igor Occon",
                 role: "Desenvolvedor de Software",
-                theme: "Dá Etec à Carreira Internacional",
+                theme: "Dá Etec a Carreira Internacional",
                 about: "Desenvolvedor de Software com 1 ano e meio de experiência. Técnico em Análise e Desenvolvimento de Sistemas pela ETEC Fernando Prestes. Experiência internacional em trabalho remoto para empresa estrangeira.",
                 icon: "fa-chalkboard-teacher",
                 image: "./FOTOS-PARTICIPANTES/Igor Occon.jpg" // Adicione a URL da imagem aqui
@@ -971,8 +1003,7 @@
                 role: "Líder de setor e CTO",
                 theme: "Apresentação institucional Meu Cliente",
                 about: "Brenda Furutani (Líder de setor) e Gabriel Andrade (CTO) apresentam a empresa Meu Cliente.",
-                icon: "fa-users",
-                image: "./FOTOS-PARTICIPANTES/" // Adicione a URL da imagem aqui
+                icon: "fas fa-users",
             },
             mulheres1: {
                 name: "Roda de Conversa: Mulheres na Tecnologia",
@@ -980,20 +1011,18 @@
                 theme: "Roda de Conversa: Mulheres na Tecnologia",
                 about: "Participantes: Cristiana Visentin (Fundadora da WinSales), Cristiane Mercado (Professora UFSCar), Fernanda Castro (Co-fundadora da New Rizon), Michele Oliveira (Diretora Applix Sistemas) e Brenda Furutani (Psicóloga e Key Account).",
                 icon: "fa-users",
-                image: "./FOTOS-PARTICIPANTES/" // Adicione a URL da imagem aqui
             },
             mulheres2: {
                 name: "Tecnologia com propósito",
                 role: "Palestrantes",
                 theme: "Tecnologia com propósito: como mulheres estão construindo futuro, redes e oportunidades",
                 about: "Participantes: Audrei Moron (VP de Tecnologia Ogilvy), Camila Mattos (Tech Lead), Cristiane Mercado (Professora UFSCar) e Mariana Domitila (CEO Grupo Elo).",
-                icon: "fa-users",
-                image: "./FOTOS-PARTICIPANTES/" // Adicione a URL da imagem aqui
+                icon: "fas fa-users",
             },
             francine: {
                 name: "Francine Cação",
                 role: "COO e cofundadora da MC Ads",
-                theme: "Trend Marketing Inteligente: Como o uso da tecnologia pode apoiar novas ativações no varejo",
+                theme: "Trade Marketing Inteligente: Como o uso da tecnologia pode apoiar novas ativações no varejo",
                 about: "COO e cofundadora da MC Ads, plataforma de retail media. Mais de 20 anos de experiência no varejo, com atuação em projetos no Grupo Carrefour, OXXO e Savegnago.",
                 icon: "fa-chalkboard-teacher",
                 image: "./FOTOS-PARTICIPANTES/Francine Cação.png" // Adicione a URL da imagem aqui
@@ -1002,7 +1031,7 @@
                 name: "Luciano Driemeier",
                 role: "Connectivity BizOps South America - Ford",
                 theme: "Como a IA + conectividade estão transformando o produto e o CX na Ford",
-                about: "Profissional com quase 10 anos de experiência na Ford Motor Company, atuando em conectividade, estratégia de produto e lançamentos na América do Sul. Atualmente em Connectivity BizOps South America, já foi Product Strategy Manager e Launch Manager.",
+                about: "Gerente Global De Novos Negócios Conectados, trabalha na Ford desde 2006. Com graduação e mestrado em Engenharia Mecânica pela Unicamp, atuou como Gerente de Projetos na América do Sul e fora dela, participando do desenvolvimento global do novo Mustang e do Figo para a Índia. Atualmente, é responsável pelas mudanças de negócio relacionadas à conectividade e mobilidade da America do Sul.",
                 icon: "fa-chalkboard-teacher",
                 image: "./FOTOS-PARTICIPANTES/Luciano Driemeier.jpeg" // Adicione a URL da imagem aqui
             }
@@ -1014,16 +1043,22 @@
             event.target.closest('.filter-btn').classList.add('active');
 
             const sections = document.querySelectorAll('.day-section');
-            
+            sections.forEach(section => {
+                // Primeiro, remova a classe 'active' de todas as seções
+                section.classList.remove('active');
+            });
+
             if (day === 'todos') {
-                sections.forEach(section => section.classList.add('active'));
-            } else {
+                // Se a opção for 'todos', adicione a classe 'active' a todas as seções
                 sections.forEach(section => {
-                    if (section.dataset.day === day) {
-                        section.classList.add('active');
-                    } else {
-                        section.classList.remove('active');
-                    }
+                section.classList.add('active');
+                });
+            } else {
+                // Caso contrário, adicione a classe 'active' apenas à seção correspondente
+                sections.forEach(section => {
+                if (section.dataset.day === day) {
+                    section.classList.add('active');
+                }
                 });
             }
         }
