@@ -244,8 +244,18 @@
         /* Container para o campo de busca e o ícone */
         .search-container {
             position: relative;
-            max-width: 600px;
-            margin: 0.5rem auto 1.5rem auto; /* Mantém a centralização */
+            /* Largura total para celulares */
+            max-width: 100%; 
+            margin: 0.5rem auto 1.5rem auto; 
+            padding: 0 15px; /* Adiciona padding lateral para não colar nas bordas do celular */
+        }
+        
+        /* Media Query: Aplica a largura reduzida apenas em telas maiores que 576px (tamanho de tablets pequenos/desktops) */
+        @media (min-width: 576px) {
+            .search-container {
+                /* Largura ideal para alinhar com os botões em telas maiores */
+                max-width: 400px; 
+            }
         }
 
         /* Ajuste no padding do input para o ícone não cobrir o texto */
@@ -257,7 +267,7 @@
         /* Estilo e posicionamento do ícone de busca */
         .search-icon {
             position: absolute;
-            left: 15px;
+            left: 35px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--purple-light);
