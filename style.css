@@ -55,9 +55,12 @@
         }
 
         .header .subtitle {
-            color: var(--purple-light);
-            font-size: 1.2rem;
-            font-weight: 300;
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--purple-light), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
         }
 
         .event-info {
@@ -433,6 +436,11 @@
             .filter-btn {
                 padding: 8px 15px;
                 margin: 0.3rem;
+            }
+
+            .event-info {
+                flex: 1 1 auto;
+                min-width: calc(50% - 1rem);
             }
         }
 
